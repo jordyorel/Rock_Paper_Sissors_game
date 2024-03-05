@@ -8,69 +8,114 @@
 #define PAPER 2
 #define SISSORS 3
 
-void menu() {
-    printf("Enter your choioce.\n");
-        printf("1: rock\n");
-        printf("2: paper\n");
-        printf("3: sissors\n");
+void displayMenu() {
+    printf("\n=== Rock-Paper-Sissors Game ===\n");
+    printf("1: rock\n");
+    printf("2: paper\n");
+    printf("3: sissors\n");
+    printf("====================================\n");
        
 }
 
-bool game() {
-   
-   srand(time(NULL));
-   int player = 0;
-   int computer = 0;
-   bool draw = false;
-   int lives = 5;
+void displayResult(int player, int computer) {
+    printf("\nPlayer's choice: ");
+    switch (player) {
+        case ROCK:
+            printf("Rock\n");
+            break;
+        case PAPER :
+            printf("Paper\n");
+            break;
+        case SISSORS:
+            printf("Sissors\n");
+            break;
+    }
 
-   while(lives > 0) {
-        menu();
-        printf("Your choice: ");
-        scanf("%d", &player);
+    printf("Computer's choice: ");
+    switch(computer){
+    case ROCK:
+            printf("Rock\n");
+            break;
+        case PAPER :
+            printf("Paper\n");
+            break;
+        case SISSORS:
+            printf("Sissors\n");
+            break;
+    }
+}
 
+void displayOutcome(int result) {
+    if(result == 0) {
+        printf("\nIt's a DRAW Play again. \n");
+    } else if(result < 0) {
+        printf("\nYou Win!\n");
+    } else {
+        printf("\nYou Lose!\n");
+    }
+}
+
+void displayLives(int lives) {
+    printf("Lives remaining: %d\n", lives);
+}
+
+void displayPlayAgainPrompt() {
+    printf("Do you want to play another round? (y/n): ");
+}
+
+int getPlayerChoice() {
+    int choice;
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+bool playAgainPrompt() {
+    char response;
+    displayPlayAgainPrompt();
+    scanf(" %c", &response);
+    return (response == 'y' || response == 'Y');
+}
+
+void game() {
+    srand(time(NULL));
+    int player, computer;
+    int lives = 5;
+
+    do {
+        // system("clear");
+        displayMenu();
+        player = getPlayerChoice();
         if(player < 1 || player > 3) {
-            printf("Invalid choice please enter again. \n");
+            printf("Invalid choice, please enter again.\n");
             continue;
         }
 
         computer = (rand() % 3) + 1;
-        if(computer == ROCK)
-            printf("\n Computer's choice is Rock");
-        else if (computer == PAPER)
-            printf("\n Computer's choice is Paper");
-        else if(computer == SISSORS)
-            printf("\n Computer's choice is Sissors");
-        
-        draw = false;
-        if ((player == ROCK && computer ==  SISSORS) || 
-            (player == SISSORS && computer == PAPER) || 
-            (player == PAPER && computer == ROCK)){
-            printf("\nYou Win!\n\n");
-        } else if ((player == ROCK && computer == PAPER) || 
-                    (player == SISSORS && computer == ROCK) || 
-                    (player == PAPER && computer == SISSORS)) {
-            printf("\nYou Lose!\n\n");
+        int result = (player - computer + 3) % 3;
+        displayResult(player, computer);
+
+        displayOutcome(result);
+
+        printf("\n-------------------------------\n");
+        if(result != 0) {
             lives--;
-        } else {
-            printf("\n It's DRAW! pay again\n\n");
-            draw = true;
+            displayLives(lives);
         }
-        printf("Lives ramaining: %d\n", lives);
 
+
+    } while(lives > 0);
+
+    if (playAgainPrompt()) {
+        game();
+    } else {
+        printf("\nThanks for playing!\n");
     }
-
-    char choice;
-    printf("Do you want to play again? (Press 's' to stop and any other key to continue): ");
-    while ((getchar()) != '\n');
-    scanf("%c", &choice);
-    return (choice != 's');
 }
 
 
+
 int main( ) {
-
     game();
-
     return 0;
 }
