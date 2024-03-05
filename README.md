@@ -19,8 +19,7 @@ This is a simple console-based Rock-Paper-Scissors game written in C. The game a
 8. After the game ends, you have the option to play again.
 
 ### Compilation
-
-To compile the program, use the provided Makefile. Open a terminal and navigate to the directory containing the source code and the Makefile. Then, run the following command:
+Run the following command:
 
 ```
 make
@@ -28,7 +27,7 @@ make
 
 ### Execution
 
-After compilation, run the executable with the following command:
+After compilation, run:
 
 ```
 ./main
