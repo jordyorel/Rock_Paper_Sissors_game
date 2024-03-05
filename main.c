@@ -3,7 +3,7 @@
   Rock-Paper-Scissors Game
   main.c
 
-  Author: Jordy Ore KONDA
+  Author: Jordy Orel KONDA
   Date:   March 6, 2024
   Licence: MIT
 
