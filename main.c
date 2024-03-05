@@ -1,3 +1,22 @@
+/*
+===============================================================================
+  Rock-Paper-Scissors Game
+  main.c
+
+  Author: Jordy Ore KONDA
+  Date:   March 6, 2024
+  Licence: MIT
+
+  Description:
+  This program implements a simple console-based Rock-Paper-Scissors game in C.
+  The player competes against a computer opponent, making choices of Rock, Paper,
+  or Scissors. The game continues until the player runs out of lives.
+
+  Enjoy the game!
+===============================================================================
+*/
+
+
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
@@ -8,13 +27,19 @@
 #define PAPER 2
 #define SISSORS 3
 
+// ANSI color escape codes
+#define COLOR_RESET "\x1b[0m"
+#define COLOR_BOLD "\x1b[1m"
+#define COLOR_RED "\x1b[31m"
+#define COLOR_GREEN "\x1b[32m"
+#define COLOR_YELLOW "\x1b[33m"
+
 void displayMenu() {
-    printf("\n=== Rock-Paper-Sissors Game ===\n");
-    printf("1: rock\n");
-    printf("2: paper\n");
-    printf("3: sissors\n");
-    printf("====================================\n");
-       
+    printf("\n%s%s=== Rock-Paper-Scissors Game ===%s\n", COLOR_BOLD, COLOR_YELLOW, COLOR_RESET);
+    printf("%s1:%s %sRock\n", COLOR_GREEN, COLOR_RESET, COLOR_BOLD);
+    printf("%s2:%s %sPaper\n", COLOR_GREEN, COLOR_RESET, COLOR_BOLD);
+    printf("%s3:%s %sScissors\n", COLOR_GREEN, COLOR_RESET, COLOR_BOLD);
+    printf("%s====================================%s\n", COLOR_YELLOW, COLOR_RESET);
 }
 
 void displayResult(int player, int computer) {
@@ -47,11 +72,11 @@ void displayResult(int player, int computer) {
 
 void displayOutcome(int result) {
     if(result == 0) {
-        printf("\nIt's a DRAW Play again. \n");
+        printf("\n%sIt's a DRAW!%s Play again. \n", COLOR_GREEN, COLOR_RESET);
     } else if(result < 0) {
-        printf("\nYou Win!\n");
+        printf("\n%sYou Win!%s\n", COLOR_GREEN, COLOR_RESET);
     } else {
-        printf("\nYou Lose!\n");
+        printf("\n%sYou Lose!%s\n", COLOR_RED, COLOR_RESET);
     }
 }
 
@@ -112,8 +137,6 @@ void game() {
         printf("\nThanks for playing!\n");
     }
 }
-
-
 
 int main( ) {
     game();
