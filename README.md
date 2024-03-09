@@ -2,7 +2,7 @@
 
 ### Overview
 
-This is a simple console-based Rock-Paper-Scissors game written in C. The game allows the player to choose between Rock, Paper, and Scissors and plays against a computer opponent. The player has a limited number of lives, and the game continues until the player runs out of lives.
+A simple console-based Rock-Paper-Scissors game written in C. The game allows the player to choose between Rock, Paper, and Scissors and plays against a computer opponent. The player has a limited number of lives, and the game continues until the player runs out of lives.
 
 ### How to Play
 
